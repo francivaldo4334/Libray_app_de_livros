@@ -7,14 +7,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.com.francivaldo.libray.presentation.Common
 import br.com.francivaldo.libray.presentation.Screen
 import br.com.francivaldo.libray.presentation.pages.layout_library
 import br.com.francivaldo.libray.presentation.pages.layout_search
@@ -22,12 +20,15 @@ import br.com.francivaldo.libray.presentation.pages.layout_search_result
 import br.com.francivaldo.libray.presentation.pages.layout_settings
 import br.com.francivaldo.libray.presentation.ui.theme.LibrayTheme
 import br.com.francivaldo.libray.presentation.widget.BottomNavigationBar
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LibrayTheme {
+            LibrayTheme(Common.isDark) {
+                val systemUiController = rememberSystemUiController()
+                systemUiController.setSystemBarsColor(MaterialTheme.colors.background,MaterialTheme.colors.isLight)
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background,

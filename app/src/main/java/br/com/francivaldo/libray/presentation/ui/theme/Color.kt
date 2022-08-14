@@ -2,7 +2,13 @@ package br.com.francivaldo.libray.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val primary = Color(0xFF7EA8A8)
+val on_primary = Color(0xFFFFFFFF)
+
+val backgroud_light = Color(0xFFEFEFEF)
+val surface_light = Color(0xFFC4C4C4)
+val on_light = Color(0xFF000000)
+
+val backgroud_dark = Color(0xFF2C2C2C)
+val surface_dark = Color(0xFF454545)
+val on_dark = Color(0xFFFFFFFF)
