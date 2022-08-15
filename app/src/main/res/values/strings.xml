@@ -8,4 +8,7 @@
     <string name="library">Livraria</string>
     <string name="first_shelf">Primeira Estante</string>
     <string name="second_shelf">Segunda Estante</string>
+    <string name="search">Pesquisar</string>
+    <string name="brazilians">Brasileiros</string>
+    <string name="popular_authors">Autores populares</string>
 </resources>
