@@ -5,4 +5,7 @@
     <string name="select_language">Selecionar linguagem</string>
     <string name="portugues">português</string>
     <string name="ingles">inglês</string>
+    <string name="library">Livraria</string>
+    <string name="first_shelf">Primeira Estante</string>
+    <string name="second_shelf">Segunda Estante</string>
 </resources>
