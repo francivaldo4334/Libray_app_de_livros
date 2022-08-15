@@ -3,4 +3,6 @@
     <string name="settings">Configurações</string>
     <string name="activate_dark_theme">Ativar tema escuro</string>
     <string name="select_language">Selecionar linguagem</string>
+    <string name="portugues">português</string>
+    <string name="ingles">inglês</string>
 </resources>
