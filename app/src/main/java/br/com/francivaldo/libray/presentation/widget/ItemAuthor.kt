@@ -15,13 +15,13 @@ data class itemAuthorData(val urlImage:String = "")
 @Composable
 fun itemAuthorListRow(items:List<itemAuthorData>){
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier
             .padding(vertical = 16.dp)
     )
     {
         items(items){
             itemAuthorUi(item = it)
+            Spacer(modifier = Modifier.size(16.dp))
         }
     }
 }
