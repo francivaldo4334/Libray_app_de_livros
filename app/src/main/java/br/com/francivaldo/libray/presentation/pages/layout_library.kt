@@ -28,16 +28,18 @@ fun layout_library(){
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colors.background)
-            .padding(16.dp)
+            .padding(start = 16.dp)
     ){
         Spacer(modifier = Modifier.size(16.dp))
-        Text(
-            text = stringResource(R.string.library),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
-        )
+        Box(modifier = Modifier.padding(end = 16.dp)){
+            Text(
+                text = stringResource(R.string.library),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
         Spacer(modifier = Modifier.size(32.dp))
         Text(
             text = stringResource(R.string.first_shelf),

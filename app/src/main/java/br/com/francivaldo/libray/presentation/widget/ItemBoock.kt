@@ -16,13 +16,13 @@ data class itemBoockData(val urlImage:String = "")
 @Composable
 fun itemBoockListRow(items:List<itemBoockData>){
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier
             .padding(vertical = 16.dp)
     )
     {
         items(items){
             itemBoockUi(item = it)
+            Spacer(modifier = Modifier.size(16.dp))
         }
     }
 }
