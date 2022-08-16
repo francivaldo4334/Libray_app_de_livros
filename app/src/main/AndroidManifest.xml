@@ -14,6 +14,10 @@
         android:theme="@style/Theme.Libray"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.bloc.SearchResultActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Libray"/>
+        <activity
             android:name=".presentation.bloc.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
