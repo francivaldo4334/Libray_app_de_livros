@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.francivaldo.libray.R
+import br.com.francivaldo.libray.presentation.Common
 import br.com.francivaldo.libray.presentation.bloc.SearchResultActivity
 import br.com.francivaldo.libray.presentation.widget.itemAuthorData
 import br.com.francivaldo.libray.presentation.widget.itemAuthorListRow
@@ -79,6 +80,7 @@ fun layout_search(){
             shape = RoundedCornerShape(16.dp),
             trailingIcon = {
                 IconButton(onClick = {
+                    Common.myViewModel.search("fox")
                     activity.startActivity(Intent(activity,SearchResultActivity::class.java))
                 }) {
                     Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null)
@@ -86,6 +88,7 @@ fun layout_search(){
             },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions = KeyboardActions(onSearch = {
+                Common.myViewModel.search(textfieldValue)
                 activity.startActivity(Intent(activity,SearchResultActivity::class.java))
             }),
             modifier = Modifier

@@ -1,5 +1,6 @@
 package br.com.francivaldo.libray.presentation.widget
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,32 +15,36 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.francivaldo.libray.presentation.Common
+import br.com.francivaldo.libray.presentation.model.UiModel
+import coil.compose.rememberAsyncImagePainter
 
-
-data class itemSearchData(val urlImage:String = "",val title:String,val author:String,val description:String)
 @Composable
-fun itemSearcListColumn(items:List<itemSearchData>){
+fun itemSearcListColumn(){
     LazyColumn()
     {
-        items(items){
+        items(Common.myViewModel.bookList){
             itemSearcUi(item = it)
             Spacer(modifier = Modifier.size(16.dp))
         }
     }
 }
 @Composable
-fun itemSearcUi(item: itemSearchData){
+fun itemSearcUi(item: UiModel){
+    val image = rememberAsyncImagePainter(model = item.image_url)
     Column(
         modifier = Modifier
             .fillMaxWidth()
     ) {
         Row() {
-            Box(
+            Image(
+                painter = image,
+                contentDescription = null,
                 modifier = Modifier
                     .width(100.dp)
                     .heightIn(140.dp)
                     .clip(RoundedCornerShape(10.dp))
-                    .background(MaterialTheme.colors.primary)
+                    .background(MaterialTheme.colors.onPrimary)
             )
             Spacer(modifier = Modifier.size(16.dp))
             Column() {

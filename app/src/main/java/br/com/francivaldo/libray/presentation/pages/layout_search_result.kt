@@ -13,8 +13,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import br.com.francivaldo.libray.R
+import br.com.francivaldo.libray.presentation.Common
 import br.com.francivaldo.libray.presentation.widget.itemSearcListColumn
-import br.com.francivaldo.libray.presentation.widget.itemSearchData
 
 @Composable
 fun layout_search_result(){
@@ -22,13 +22,6 @@ fun layout_search_result(){
         mutableStateOf("")
     }
     val activity = LocalContext.current as Activity
-    val listSearch = listOf<itemSearchData>(
-        itemSearchData("","Title","Author","uma decricao do livrouma decricao do livrouma decricao do livro"),
-        itemSearchData("","Title","Author","uma decricao do livrouma decricao do livrouma decricao do livro"),
-        itemSearchData("","Title","Author","uma decricao do livrouma decricao do livrouma decricao do livro"),
-        itemSearchData("","Title","Author","uma decricao do livrouma decricao do livrouma decricao do livro"),
-        itemSearchData("","Title","Author","uma decricao do livrouma decricao do livrouma decricao do livro"),
-    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -59,6 +52,6 @@ fun layout_search_result(){
                 .fillMaxWidth()
         )
         Spacer(modifier = Modifier.size(32.dp))
-        itemSearcListColumn(items = listSearch)
+        itemSearcListColumn()
     }
 }
