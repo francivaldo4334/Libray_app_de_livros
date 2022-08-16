@@ -115,13 +115,6 @@ fun layout_settings(){
                     }
                 }
             }
-            Box(
-                contentAlignment = Alignment.CenterEnd,
-                modifier = Modifier
-                    .fillMaxWidth()
-            ){
-
-            }
         }
     }
 }

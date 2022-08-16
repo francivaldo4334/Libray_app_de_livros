@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LibrayTheme(Common.isDark) {
+            LibrayTheme {
                 val systemUiController = rememberSystemUiController()
                 systemUiController.setSystemBarsColor(MaterialTheme.colors.background,MaterialTheme.colors.isLight)
                 Surface(
