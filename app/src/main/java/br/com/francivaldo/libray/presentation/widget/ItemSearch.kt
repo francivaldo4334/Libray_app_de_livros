@@ -48,11 +48,11 @@ fun itemSearcUi(item: UiModel){
             )
             Spacer(modifier = Modifier.size(16.dp))
             Column() {
-                Text(text = item.title, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(text = item.title, fontSize = 18.sp, fontWeight = FontWeight.Bold, maxLines = 1)
                 Spacer(modifier = Modifier.size(8.dp))
-                Text(text = item.author, fontSize = 14.sp)
+                Text(text = item.author, fontSize = 14.sp, maxLines = 1)
                 Spacer(modifier = Modifier.size(8.dp))
-                Text(text = item.description, fontSize = 10.sp)
+                Text(text = item.description, fontSize = 10.sp, maxLines = 7)
             }
         }
         Spacer(modifier = Modifier.size(16.dp))
