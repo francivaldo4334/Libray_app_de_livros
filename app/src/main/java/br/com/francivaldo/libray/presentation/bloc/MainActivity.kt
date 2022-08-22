@@ -12,18 +12,22 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.com.francivaldo.libray.presentation.Common
 import br.com.francivaldo.libray.presentation.Screen
 import br.com.francivaldo.libray.presentation.pages.layout_library
 import br.com.francivaldo.libray.presentation.pages.layout_search
 import br.com.francivaldo.libray.presentation.pages.layout_search_result
 import br.com.francivaldo.libray.presentation.pages.layout_settings
 import br.com.francivaldo.libray.presentation.ui.theme.LibrayTheme
+import br.com.francivaldo.libray.presentation.viewmodel.MyViewModel
 import br.com.francivaldo.libray.presentation.widget.BottomNavigationBar
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Common.setMyViewModel(MyViewModel(this.application))
+        Common.getMyViewModel().getAppSettings()
         setContent {
             LibrayTheme {
                 val systemUiController = rememberSystemUiController()

@@ -23,7 +23,7 @@ import coil.compose.rememberAsyncImagePainter
 fun itemSearcListColumn(){
     LazyColumn()
     {
-        items(Common.myViewModel.bookList){
+        items(Common.getMyViewModel().bookList){
             itemSearcUi(item = it)
             Spacer(modifier = Modifier.size(16.dp))
         }

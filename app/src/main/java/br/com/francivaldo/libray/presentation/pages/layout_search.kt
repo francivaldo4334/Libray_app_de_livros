@@ -80,7 +80,7 @@ fun layout_search(){
             shape = RoundedCornerShape(16.dp),
             trailingIcon = {
                 IconButton(onClick = {
-                    Common.myViewModel.search("fox")
+                    Common.getMyViewModel().search("fox")
                     activity.startActivity(Intent(activity,SearchResultActivity::class.java))
                 }) {
                     Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null)
@@ -88,7 +88,7 @@ fun layout_search(){
             },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions = KeyboardActions(onSearch = {
-                Common.myViewModel.search(textfieldValue)
+                Common.getMyViewModel().search(textfieldValue)
                 activity.startActivity(Intent(activity,SearchResultActivity::class.java))
             }),
             modifier = Modifier

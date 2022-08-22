@@ -1,5 +1,5 @@
 package br.com.francivaldo.libray.domain.controller
-import br.com.francivaldo.libray.data.model.VolumeInfo
+import br.com.francivaldo.libray.data.network.model.VolumeInfo
 import br.com.francivaldo.libray.presentation.model.UiModel
 
 data class SearchResult(
