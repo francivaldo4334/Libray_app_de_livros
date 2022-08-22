@@ -1,0 +1,6 @@
+package br.com.francivaldo.libray.data.network.model
+
+data class Pdf(
+    val acsTokenLink: String,
+    val isAvailable: Boolean
+)

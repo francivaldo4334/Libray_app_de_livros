@@ -34,7 +34,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun LibrayTheme(darkTheme: Boolean = Common.isDark, content: @Composable () -> Unit) {
+fun LibrayTheme(darkTheme: Boolean = Common.getMyViewModel().isDark, content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {

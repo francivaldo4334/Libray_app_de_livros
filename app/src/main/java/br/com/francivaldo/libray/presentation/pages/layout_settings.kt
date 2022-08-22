@@ -22,9 +22,6 @@ import br.com.francivaldo.libray.presentation.Common
 fun layout_settings(){
     val textportugues:String = stringResource(R.string.portugues)
     val textingles:String = stringResource(R.string.ingles)
-    var textlanguage by remember {
-        mutableStateOf(textportugues)
-    }
     var menuExpanded by remember {
         mutableStateOf(false)
     }
@@ -56,8 +53,11 @@ fun layout_settings(){
             {
                 Text(text = stringResource(R.string.activate_dark_theme))
                 Switch(
-                    checked = Common.isDark,
-                    onCheckedChange = {Common.isDark = it}
+                    checked = Common.getMyViewModel().isDark,
+                    onCheckedChange = {
+                        Common.getMyViewModel().isDark = it
+                        Common.getMyViewModel().setAppSettings()
+                    }
                 )
             }
             Box(modifier = Modifier
@@ -89,7 +89,7 @@ fun layout_settings(){
                             .fillMaxHeight()
                     ) {
                         Text(
-                            text = textlanguage,
+                            text = Common.getMyViewModel().language,
                             fontSize = 12.sp
                         )
                         Spacer(modifier = Modifier.size(16.dp))
@@ -100,13 +100,15 @@ fun layout_settings(){
                         )
                         DropdownMenu(expanded = menuExpanded, onDismissRequest = {menuExpanded = false}) {
                             DropdownMenuItem(onClick = {
-                                textlanguage = textportugues
+                                Common.getMyViewModel().language = textportugues
+                                Common.getMyViewModel().setAppSettings()
                                 menuExpanded = false
                             }) {
                                 Text(text = stringResource(R.string.portugues), fontSize = 12.sp)
                             }
                             DropdownMenuItem(onClick = {
-                                textlanguage = textingles
+                                Common.getMyViewModel().language = textingles
+                                Common.getMyViewModel().setAppSettings()
                                 menuExpanded = false
                             }) {
                                 Text(text = stringResource(R.string.ingles), fontSize = 12.sp)
