@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import br.com.francivaldo.libray.R
 import br.com.francivaldo.libray.presentation.Common
 import br.com.francivaldo.libray.presentation.bloc.SearchResultActivity
+import br.com.francivaldo.libray.presentation.widget.SearchTextField
 import br.com.francivaldo.libray.presentation.widget.itemSearcListColumn
 
 @Composable
@@ -33,31 +34,10 @@ fun layout_search_result(){
         IconButton(onClick = {
             activity.onBackPressed()
         }) {
-            Icon(painter = painterResource(id = R.drawable.ic_arrow_back), contentDescription = null)
+            Icon(painter = painterResource(id = R.drawable.ic_arrow_back), contentDescription = null,tint = MaterialTheme.colors.onBackground)
         }
         Spacer(modifier = Modifier.size(32.dp))
-        TextField(
-            value = textfieldValue,
-            onValueChange ={ textfieldValue = it },
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = MaterialTheme.colors.onPrimary,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
-            shape = RoundedCornerShape(16.dp),
-            trailingIcon = {
-                IconButton(onClick = {
-                    if(!(textfieldValue.isEmpty() || textfieldValue.isBlank())) {
-                        Common.getMyViewModel().search(textfieldValue)
-                        activity.startActivity(Intent(activity, SearchResultActivity::class.java))
-                    }
-                }) {
-                    Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null,tint = Color.Black)
-                }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+        SearchTextField()
         Spacer(modifier = Modifier.size(32.dp))
         itemSearcListColumn()
     }
