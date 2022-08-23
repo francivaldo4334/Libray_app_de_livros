@@ -85,7 +85,7 @@ fun layout_search(){
                         activity.startActivity(Intent(activity, SearchResultActivity::class.java))
                     }
                 }) {
-                    Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null)
+                    Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null,tint = Color.Black)
                 }
             },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),

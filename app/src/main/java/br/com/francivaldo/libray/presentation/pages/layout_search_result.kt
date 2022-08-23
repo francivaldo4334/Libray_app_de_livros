@@ -52,7 +52,7 @@ fun layout_search_result(){
                         activity.startActivity(Intent(activity, SearchResultActivity::class.java))
                     }
                 }) {
-                    Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null)
+                    Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null,tint = Color.Black)
                 }
             },
             modifier = Modifier

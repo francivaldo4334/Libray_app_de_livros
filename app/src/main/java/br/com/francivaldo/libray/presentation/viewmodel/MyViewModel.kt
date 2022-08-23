@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +19,7 @@ import br.com.francivaldo.libray.presentation.model.UserSettings
 import kotlinx.coroutines.launch
 import org.intellij.lang.annotations.Language
 import retrofit2.http.Query
+import java.util.*
 
 
 class MyViewModel(private val context: Context? = null):ViewModel() {
@@ -46,6 +48,17 @@ class MyViewModel(private val context: Context? = null):ViewModel() {
         )
         editor.apply()
         this.language = language
+        //traca a linguagem do sistema
+        val locale = Locale(
+            if(language == UserSettings.US_LANGUAGE)
+                "en"
+            else
+                "pt"
+        )
+        Locale.setDefault(locale)
+        val configuration = Configuration()
+        configuration.locale = locale
+        context.resources.updateConfiguration(configuration,context.resources.displayMetrics)
     }
     fun getLang(){
         if(context == null)
@@ -61,6 +74,8 @@ class MyViewModel(private val context: Context? = null):ViewModel() {
                 language = lang
             }
         }
+        //carregando
+        setLang(language)
     }
     fun setDarkTheme(it: Boolean) {
         if(context == null)

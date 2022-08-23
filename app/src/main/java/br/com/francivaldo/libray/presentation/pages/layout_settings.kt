@@ -1,7 +1,5 @@
 package br.com.francivaldo.libray.presentation.pages
 
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -92,7 +89,7 @@ fun layout_settings(){
                             .fillMaxHeight()
                     ) {
                         Text(
-                            text = if(language == UserSettings.BR_LANGUAGE) stringResource(id = R.string.portugues) else stringResource(id = R.string.ingles
+                            text = if(language == UserSettings.BR_LANGUAGE) stringResource(id = R.string.portuguese) else stringResource(id = R.string.english
                             ),
                             fontSize = 12.sp
                         )
@@ -107,13 +104,13 @@ fun layout_settings(){
                                 Common.getMyViewModel().setLang(UserSettings.BR_LANGUAGE)
                                 menuExpanded = false
                             }) {
-                                Text(text = stringResource(R.string.portugues), fontSize = 12.sp)
+                                Text(text = stringResource(R.string.portuguese), fontSize = 12.sp)
                             }
                             DropdownMenuItem(onClick = {
                                 Common.getMyViewModel().setLang(UserSettings.US_LANGUAGE)
                                 menuExpanded = false
                             }) {
-                                Text(text = stringResource(R.string.ingles), fontSize = 12.sp)
+                                Text(text = stringResource(R.string.english), fontSize = 12.sp)
                             }
                         }
                     }
