@@ -9,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -17,14 +16,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.francivaldo.libray.R
 import br.com.francivaldo.libray.presentation.Common
+import br.com.francivaldo.libray.presentation.model.UserSettings
+
 
 @Composable
 fun layout_settings(){
-    val textportugues:String = stringResource(R.string.portugues)
-    val textingles:String = stringResource(R.string.ingles)
     var menuExpanded by remember {
         mutableStateOf(false)
     }
+    var language = Common.getMyViewModel().language
+    var switchEnable = Common.getMyViewModel().isDark
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,10 +54,9 @@ fun layout_settings(){
             {
                 Text(text = stringResource(R.string.activate_dark_theme))
                 Switch(
-                    checked = Common.getMyViewModel().isDark,
+                    checked = switchEnable,
                     onCheckedChange = {
-                        Common.getMyViewModel().isDark = it
-                        Common.getMyViewModel().setAppSettings()
+                        Common.getMyViewModel().setDarkTheme(it)
                     }
                 )
             }
@@ -89,7 +89,8 @@ fun layout_settings(){
                             .fillMaxHeight()
                     ) {
                         Text(
-                            text = Common.getMyViewModel().language,
+                            text = if(language == UserSettings.BR_LANGUAGE) stringResource(id = R.string.portuguese) else stringResource(id = R.string.english
+                            ),
                             fontSize = 12.sp
                         )
                         Spacer(modifier = Modifier.size(16.dp))
@@ -100,18 +101,16 @@ fun layout_settings(){
                         )
                         DropdownMenu(expanded = menuExpanded, onDismissRequest = {menuExpanded = false}) {
                             DropdownMenuItem(onClick = {
-                                Common.getMyViewModel().language = textportugues
-                                Common.getMyViewModel().setAppSettings()
+                                Common.getMyViewModel().setLang(UserSettings.BR_LANGUAGE)
                                 menuExpanded = false
                             }) {
-                                Text(text = stringResource(R.string.portugues), fontSize = 12.sp)
+                                Text(text = stringResource(R.string.portuguese), fontSize = 12.sp)
                             }
                             DropdownMenuItem(onClick = {
-                                Common.getMyViewModel().language = textingles
-                                Common.getMyViewModel().setAppSettings()
+                                Common.getMyViewModel().setLang(UserSettings.US_LANGUAGE)
                                 menuExpanded = false
                             }) {
-                                Text(text = stringResource(R.string.ingles), fontSize = 12.sp)
+                                Text(text = stringResource(R.string.english), fontSize = 12.sp)
                             }
                         }
                     }

@@ -23,10 +23,7 @@ import androidx.compose.ui.unit.sp
 import br.com.francivaldo.libray.R
 import br.com.francivaldo.libray.presentation.Common
 import br.com.francivaldo.libray.presentation.bloc.SearchResultActivity
-import br.com.francivaldo.libray.presentation.widget.itemAuthorData
-import br.com.francivaldo.libray.presentation.widget.itemAuthorListRow
-import br.com.francivaldo.libray.presentation.widget.itemBoockData
-import br.com.francivaldo.libray.presentation.widget.itemBoockListRow
+import br.com.francivaldo.libray.presentation.widget.*
 
 @Composable
 fun layout_search(){
@@ -46,9 +43,6 @@ fun layout_search(){
         itemAuthorData(),
         itemAuthorData(),
     )
-    var textfieldValue by remember {
-        mutableStateOf("")
-    }
     val activity = LocalContext.current as Activity
     Column(
         modifier = Modifier
@@ -69,32 +63,9 @@ fun layout_search(){
             )
         }
         Spacer(modifier = Modifier.size(32.dp))
-        TextField(
-            value = textfieldValue,
-            onValueChange ={ textfieldValue = it },
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = MaterialTheme.colors.onPrimary,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
-            shape = RoundedCornerShape(16.dp),
-            trailingIcon = {
-                IconButton(onClick = {
-                    Common.getMyViewModel().search("fox")
-                    activity.startActivity(Intent(activity,SearchResultActivity::class.java))
-                }) {
-                    Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null)
-                }
-            },
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = {
-                Common.getMyViewModel().search(textfieldValue)
-                activity.startActivity(Intent(activity,SearchResultActivity::class.java))
-            }),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(end = 16.dp)
-        )
+        SearchTextField{
+            activity.startActivity(Intent(activity, SearchResultActivity::class.java))
+        }
         Spacer(modifier = Modifier.size(32.dp))
         Text(
             text = stringResource(R.string.brazilians),

@@ -1,5 +1,6 @@
 package br.com.francivaldo.libray.presentation.bloc
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,14 +21,15 @@ import br.com.francivaldo.libray.presentation.pages.layout_search_result
 import br.com.francivaldo.libray.presentation.pages.layout_settings
 import br.com.francivaldo.libray.presentation.ui.theme.LibrayTheme
 import br.com.francivaldo.libray.presentation.viewmodel.MyViewModel
+import br.com.francivaldo.libray.presentation.model.UserSettings
 import br.com.francivaldo.libray.presentation.widget.BottomNavigationBar
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Common.setMyViewModel(MyViewModel(this.application))
-        Common.getMyViewModel().getAppSettings()
+        Common.setMyViewModel(MyViewModel(this))
         setContent {
             LibrayTheme {
                 val systemUiController = rememberSystemUiController()
@@ -60,5 +62,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+//        Common.setAppSettings(UserSettings())
+//        loadSharedPreferences()
     }
 }

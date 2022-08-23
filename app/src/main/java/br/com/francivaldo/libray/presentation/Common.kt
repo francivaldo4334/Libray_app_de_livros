@@ -1,10 +1,11 @@
 package br.com.francivaldo.libray.presentation
 
 import br.com.francivaldo.libray.presentation.viewmodel.MyViewModel
+import br.com.francivaldo.libray.presentation.model.UserSettings
 
 class Common {
     companion object{
-        private var myViewModel:MyViewModel = MyViewModel()
+        private var myViewModel:MyViewModel = MyViewModel(null)
         fun getMyViewModel():MyViewModel{
             return myViewModel
         }

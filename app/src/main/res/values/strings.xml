@@ -3,8 +3,8 @@
     <string name="settings">Configurações</string>
     <string name="activate_dark_theme">Ativar tema escuro</string>
     <string name="select_language">Selecionar linguagem</string>
-    <string name="portugues">português</string>
-    <string name="ingles">inglês</string>
+    <string name="portuguese">Português</string>
+    <string name="english">Inglês</string>
     <string name="library">Livraria</string>
     <string name="first_shelf">Primeira Estante</string>
     <string name="second_shelf">Segunda Estante</string>

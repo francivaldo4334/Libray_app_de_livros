@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
+import br.com.francivaldo.libray.presentation.Common
 import br.com.francivaldo.libray.presentation.pages.layout_search_result
 import br.com.francivaldo.libray.presentation.ui.theme.LibrayTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
