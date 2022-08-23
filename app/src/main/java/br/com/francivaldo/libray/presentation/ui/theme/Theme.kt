@@ -1,12 +1,11 @@
 package br.com.francivaldo.libray.presentation.ui.theme
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import br.com.francivaldo.libray.presentation.Common
+import br.com.francivaldo.libray.presentation.model.UserSettings
 
 @SuppressLint("ConflictingOnColor")
 private val DarkColorPalette = darkColors(
@@ -34,8 +33,10 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun LibrayTheme(darkTheme: Boolean = Common.getMyViewModel().isDark, content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
+fun LibrayTheme(theme: Boolean = false, content: @Composable () -> Unit) {
+
+    val colors =
+    if (theme) {
         DarkColorPalette
     } else {
         LightColorPalette
