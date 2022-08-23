@@ -29,8 +29,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Common.setMyViewModel(MyViewModel(this.application))
-//        Common.getMyViewModel().getAppSettings()
+        Common.setMyViewModel(MyViewModel(this))
         setContent {
             LibrayTheme {
                 val systemUiController = rememberSystemUiController()
@@ -66,10 +65,4 @@ class MainActivity : ComponentActivity() {
 //        Common.setAppSettings(UserSettings())
 //        loadSharedPreferences()
     }
-//    fun loadSharedPreferences() {
-//        val sharedPreferences: SharedPreferences =
-//            getSharedPreferences(UserSettings.PREFERENCES, MODE_PRIVATE)
-//        val theme = sharedPreferences.getString(UserSettings.CUSTOM_THEME, UserSettings.LIGHT_THEME)
-//        Common.getAppSettings().customTheme = theme
-//    }
 }

@@ -1,6 +1,10 @@
 package br.com.francivaldo.libray.presentation.viewmodel
 
 import android.app.Application
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+import androidx.activity.ComponentActivity
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,48 +12,77 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.francivaldo.libray.domain.controller.toUiModel
 import br.com.francivaldo.libray.domain.repository.UserCase
+import br.com.francivaldo.libray.presentation.Common
 import br.com.francivaldo.libray.presentation.model.UiModel
+import br.com.francivaldo.libray.presentation.model.UserSettings
 import kotlinx.coroutines.launch
+import org.intellij.lang.annotations.Language
 import retrofit2.http.Query
 
 
-class MyViewModel(application: Application? = null):ViewModel() {
-//    init {
-//        if(application != null)
-//            UserCase.initInstance(application)
-//    }
-//    var isDark by mutableStateOf(false)
-//    var language by mutableStateOf("portugues")
+class MyViewModel(private val context: Context? = null):ViewModel() {
+    var isDark by mutableStateOf(false)
+    var language by mutableStateOf(UserSettings.BR_LANGUAGE)
     var bookList by mutableStateOf(listOf<UiModel>())
     fun search(@Query("search") search:String){
         viewModelScope.launch {
             bookList = UserCase.search(search).map {it.toUiModel()}
         }
     }
-
+    init {
+        getDarkTheme()
+        getLang()
+    }
+    fun setLang(language: String){
+        if(context == null)
+            return
+        val editor: SharedPreferences.Editor = context.getSharedPreferences(UserSettings.PREFERENCES, MODE_PRIVATE).edit()
+        //SET
+        editor.putString(UserSettings.CUSTOM_LANGUAGE,
+        if(language == UserSettings.US_LANGUAGE)
+            UserSettings.US_LANGUAGE
+        else
+            UserSettings.BR_LANGUAGE
+        )
+        editor.apply()
+        this.language = language
+    }
+    fun getLang(){
+        if(context == null)
+            return
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(UserSettings.PREFERENCES, ComponentActivity.MODE_PRIVATE)
+        //get
+        val lang = sharedPreferences.getString(UserSettings.CUSTOM_LANGUAGE, UserSettings.LIGHT_THEME)
+        when(lang){
+            UserSettings.BR_LANGUAGE ->{
+                language = lang
+            }
+            UserSettings.US_LANGUAGE ->{
+                language = lang
+            }
+        }
+    }
     fun setDarkTheme(it: Boolean) {
-
+        if(context == null)
+            return
+        val editor: SharedPreferences.Editor = context.getSharedPreferences(UserSettings.PREFERENCES, MODE_PRIVATE).edit()
+        //SET
+        editor.putString(UserSettings.CUSTOM_THEME,if(it)UserSettings.DARK_THEME else UserSettings.LIGHT_THEME)
+        editor.apply()
+        isDark = it
     }
-
-    fun setLanguage(language: String) {
-
+    fun getDarkTheme():Boolean{
+        if(context == null)
+            return false
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences(UserSettings.PREFERENCES, ComponentActivity.MODE_PRIVATE)
+        //get
+        val theme = sharedPreferences.getString(UserSettings.CUSTOM_THEME, UserSettings.LIGHT_THEME)
+        when(theme){
+            UserSettings.DARK_THEME->
+                isDark = true
+            else ->
+                isDark = false
+        }
+        return isDark
     }
-//    fun setAppSettings(){
-
-//        viewModelScope.launch {
-//            UserCase.setAppSettings(
-//                AppSettingsUi(
-//                    language = this@MyViewModel.language,
-//                    isDark = this@MyViewModel.isDark
-//                )
-//                .toCtrl())
-//        }
-//    }
-//    fun getAppSettings(){
-//        viewModelScope.launch {
-//            val appSettings = UserCase.roomRepository!!.getAppSettings().toUi()
-//            isDark = appSettings.isDark
-//            language = appSettings.language
-//        }
-//    }
 }
