@@ -1,6 +1,7 @@
 package br.com.francivaldo.libray.presentation.pages
 
 import android.app.Activity
+import android.content.Intent
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import br.com.francivaldo.libray.R
 import br.com.francivaldo.libray.presentation.Common
+import br.com.francivaldo.libray.presentation.bloc.SearchResultActivity
 import br.com.francivaldo.libray.presentation.widget.itemSearcListColumn
 
 @Composable
@@ -44,7 +46,12 @@ fun layout_search_result(){
             ),
             shape = RoundedCornerShape(16.dp),
             trailingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    if(!(textfieldValue.isEmpty() || textfieldValue.isBlank())) {
+                        Common.getMyViewModel().search(textfieldValue)
+                        activity.startActivity(Intent(activity, SearchResultActivity::class.java))
+                    }
+                }) {
                     Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null)
                 }
             },

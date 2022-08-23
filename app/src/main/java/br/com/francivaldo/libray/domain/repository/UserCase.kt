@@ -11,12 +11,11 @@ object UserCase : UserCaseInterface{
 //        roomRepository = RoomRepository(appRoomDatabase.getAppSettings())
 //    }
     override suspend fun search( search: String): List<SearchResult> {
-        val list = ArrayList<SearchResult>()
-        val responselist = ObjectRetrofit.invoke().search(search)
-        responselist.items.map {
-            list.add(SearchResult().fromData(it.volumeInfo))
-        }
-        return list
+        return try {
+                ObjectRetrofit.invoke().search(search).items.map{SearchResult().fromData(it.volumeInfo)}
+            }catch (e:Exception){
+                ArrayList<SearchResult>()
+            }
     }
 
 //    override suspend fun getAppSettings(): AppSettingsCtrl {

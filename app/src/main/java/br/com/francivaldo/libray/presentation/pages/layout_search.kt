@@ -80,8 +80,10 @@ fun layout_search(){
             shape = RoundedCornerShape(16.dp),
             trailingIcon = {
                 IconButton(onClick = {
-                    Common.getMyViewModel().search("fox")
-                    activity.startActivity(Intent(activity,SearchResultActivity::class.java))
+                    if(!(textfieldValue.isEmpty() || textfieldValue.isBlank())) {
+                        Common.getMyViewModel().search(textfieldValue)
+                        activity.startActivity(Intent(activity, SearchResultActivity::class.java))
+                    }
                 }) {
                     Icon(painter = painterResource(id = R.drawable.ic_search), contentDescription = null)
                 }

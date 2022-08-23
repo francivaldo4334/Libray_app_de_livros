@@ -23,11 +23,7 @@ class MyViewModel(application: Application? = null):ViewModel() {
     var bookList by mutableStateOf(listOf<UiModel>())
     fun search(@Query("search") search:String){
         viewModelScope.launch {
-            val list = ArrayList<UiModel>()
-            UserCase.search(search).map {
-                list.add(it.toUiModel())
-            }
-            bookList = list
+            bookList = UserCase.search(search).map {it.toUiModel()}
         }
     }
 
